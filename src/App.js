@@ -12,7 +12,6 @@ function App() {
         <Route path="/hotels" element={<List />}></Route>
         <Route path="/hotels/:id" element={<Hotel />}></Route>
       </Routes>
-      <h1>Hello Hotel</h1>
     </div>
   );
 }

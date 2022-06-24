@@ -12,25 +12,31 @@ const Header = () => {
         <div className="headerList">
           <div className="headerListItem active">
             <MdOutlineHotel />
-            Stays
+            <span>Stays</span>
           </div>
           <div className="headerListItem">
             <IoIosAirplane />
-            Flights
+            <span>Flights</span>
           </div>
           <div className="headerListItem">
             <AiFillCar />
-            Car Rentals
+            <span>Car Rentals</span>
           </div>
           <div className="headerListItem">
             <RiHotelBedLine />
-            Attractions
+            <span>Attractions</span>
           </div>
           <div className="headerListItem">
             <MdLocalTaxi />
-            Airport taxis
+            <span>Airport taxis</span>
           </div>
         </div>
+        <h1 className="headerTitle">A lifetime of discounts? It's Genius.</h1>
+        <p className="headerDesc">
+          Get rewarded for your travels - unlock instant savings of 10% or more
+          with a free BD Booking account{" "}
+        </p>
+        <button className="headerButton">Sign in / Register</button>
       </div>
     </div>
   );

@@ -5,10 +5,14 @@
   justify-content: center;
 }
 
+.headerContainer {
+  margin: 20px 0 100px 0;
+}
+
 .headerList {
   width: 100%;
   max-width: 1024px;
-  margin: 20px 0 100px 0;
+  margin-bottom: 50px;
 }
 
 .headerList {
@@ -26,4 +30,17 @@
   border: 1px solid white;
   padding: 10px;
   border-radius: 20px;
+}
+
+.headerDesc {
+  margin: 20px 0;
+}
+
+.headerButton {
+  background-color: #0071c2;
+  border: none;
+  color: white;
+  font-weight: 500;
+  padding: 10px;
+  cursor: pointer;
 }

@@ -1,13 +1,14 @@
 import React from "react";
+import "./Navbar.css"
 
 const Navbar = () => {
   return (
     <div className="navbar">
-      <div className="nabContainer">
+      <div className="navContainer">
         <span className="logo">BD Booking!</span>
-        <div className="nabItems">
-          <button className="nabButton">Register</button>
-          <button className="nabButton">Login</button>
+        <div className="navItems">
+          <button className="navButton">Register</button>
+          <button className="navButton">Login</button>
         </div>
       </div>
     </div>

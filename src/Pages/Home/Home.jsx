@@ -1,10 +1,11 @@
 import React from "react";
+import Navbar from "../../Components/Navbar/Navbar";
 import "./Home.css";
 
 const Home = () => {
   return (
     <div>
-      <h1>Hotel Home Page</h1>
+      <Navbar />
     </div>
   );
 };

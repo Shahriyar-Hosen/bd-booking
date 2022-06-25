@@ -80,3 +80,8 @@
   color: lightgray;
   cursor: pointer;
 }
+
+.searchDate {
+  position: absolute;
+  top: 50px;
+}

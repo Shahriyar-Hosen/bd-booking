@@ -66,6 +66,7 @@ const Header = () => {
               onChange={(item) => setSearchDate([item.selection])}
               moveRangeOnFirstSelection={false}
               ranges={searchDate}
+              className="searchDate"
             />
           </div>
           <div className="headerSearchItem">

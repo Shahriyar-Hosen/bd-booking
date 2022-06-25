@@ -5,8 +5,19 @@ import { IoIosAirplane } from "react-icons/io";
 import { MdLocalTaxi, MdOutlineHotel } from "react-icons/md";
 import { RiHotelBedLine } from "react-icons/ri";
 import "./Header.css";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { DateRange } from "react-date-range";
+import { useState } from "react";
 
 const Header = () => {
+  const [searchDate, setSearchDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: null,
+      key: "selection",
+    },
+  ]);
   return (
     <div className="header">
       <div className="headerContainer">
@@ -50,6 +61,12 @@ const Header = () => {
           <div className="headerSearchItem">
             <FaRegCalendarAlt className="headerIcon" />
             <span className="headerSearchText">{`data to date`}</span>
+            <DateRange
+              editableDateInputs={true}
+              onChange={(item) => setSearchDate([item.selection])}
+              moveRangeOnFirstSelection={false}
+              ranges={searchDate}
+            />
           </div>
           <div className="headerSearchItem">
             <GiPerson className="headerIcon" />

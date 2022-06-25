@@ -5,19 +5,21 @@ import { IoIosAirplane } from "react-icons/io";
 import { MdLocalTaxi, MdOutlineHotel } from "react-icons/md";
 import { RiHotelBedLine } from "react-icons/ri";
 import "./Header.css";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
 import { useState } from "react";
+import { format } from "date-fns";
 
 const Header = () => {
   const [searchDate, setSearchDate] = useState([
     {
       startDate: new Date(),
-      endDate: null,
+      endDate: new Date(),
       key: "selection",
     },
   ]);
+  console.log(new Date());
   return (
     <div className="header">
       <div className="headerContainer">
@@ -60,7 +62,10 @@ const Header = () => {
           </div>
           <div className="headerSearchItem">
             <FaRegCalendarAlt className="headerIcon" />
-            <span className="headerSearchText">{`data to date`}</span>
+            <span className="headerSearchText">{`${format(
+              searchDate[0].startDate,
+              "dd/MM/yyyy"
+            )} to ${format(searchDate[0].endDate, "dd/MM/yyyy")}`}</span>
             <DateRange
               editableDateInputs={true}
               onChange={(item) => setSearchDate([item.selection])}

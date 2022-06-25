@@ -20,7 +20,12 @@ const Header = () => {
       key: "selection",
     },
   ]);
-  console.log(new Date());
+  const [option, setOption] = useState({
+    adult: 1,
+    children: 0,
+    room: 1,
+  });
+
   return (
     <div className="header">
       <div className="headerContainer">
@@ -72,18 +77,20 @@ const Header = () => {
               searchDate[0].endDate,
               "dd/MM/yyyy"
             )}`}</span>
-            {openDate && 
-            <DateRange
-              editableDateInputs={true}
-              onChange={(item) => setSearchDate([item.selection])}
-              moveRangeOnFirstSelection={false}
-              ranges={searchDate}
-              className="searchDate"
-            />}
+            {openDate && (
+              <DateRange
+                editableDateInputs={true}
+                onChange={(item) => setSearchDate([item.selection])}
+                moveRangeOnFirstSelection={false}
+                ranges={searchDate}
+                className="searchDate"
+              />
+            )}
           </div>
           <div className="headerSearchItem">
             <GiPerson className="headerIcon" />
-            <span className="headerSearchText">{`1 adults 0 children 1 room`}</span>
+            <span className="headerSearchText">{`${option.adult} adults · ${option.children} children · ${option.room} room`}</span>
+            
           </div>
           <div className="headerSearchItem">
             <button className="headerBtn">Search</button>

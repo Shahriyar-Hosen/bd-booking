@@ -60,3 +60,7 @@
   width: 99%;
   max-width: 1024px;
 }
+
+.headerIcon{
+  color: lightgray;
+}

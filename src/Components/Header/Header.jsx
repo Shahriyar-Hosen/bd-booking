@@ -52,6 +52,10 @@ const Header = () => {
             <FaRegCalendarAlt className="headerIcon" />
             <span>data to date</span>
           </div>
+          <div className="headerSearchItem">
+            <GiPerson className="headerIcon" />
+            <span>{`1 adults 0 children 1 room`}</span>
+          </div>
         </div>
       </div>
     </div>

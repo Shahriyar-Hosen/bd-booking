@@ -4,6 +4,7 @@ import { IoIosAirplane } from "react-icons/io";
 import { AiFillCar } from "react-icons/ai";
 import { RiHotelBedLine } from "react-icons/ri";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import { GiPerson } from "react-icons/gi";
 import "./Header.css";
 
 const Header = () => {
@@ -46,6 +47,10 @@ const Header = () => {
               placeholder="Where are you going?"
               className="headerSearchInput"
             />
+          </div>
+          <div className="headerSearchItem">
+            <FaRegCalendarAlt className="headerIcon" />
+            <span>data to date</span>
           </div>
         </div>
       </div>

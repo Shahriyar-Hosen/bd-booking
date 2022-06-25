@@ -3,6 +3,7 @@ import { MdOutlineHotel, MdLocalTaxi } from "react-icons/md";
 import { IoIosAirplane } from "react-icons/io";
 import { AiFillCar } from "react-icons/ai";
 import { RiHotelBedLine } from "react-icons/ri";
+import { FaRegCalendarAlt } from "react-icons/fa";
 import "./Header.css";
 
 const Header = () => {
@@ -37,6 +38,16 @@ const Header = () => {
           with a free BD Booking account{" "}
         </p>
         <button className="headerButton">Sign in / Register</button>
+        <div className="headerSearch">
+          <div className="headerSearchItem">
+            <MdOutlineHotel className="headerIcon" />
+            <input
+              type="text"
+              placeholder="Where are you going?"
+              className="headerSearchInput"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

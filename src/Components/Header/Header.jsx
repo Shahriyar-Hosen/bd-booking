@@ -1,10 +1,9 @@
-import React from "react";
-import { MdOutlineHotel, MdLocalTaxi } from "react-icons/md";
-import { IoIosAirplane } from "react-icons/io";
 import { AiFillCar } from "react-icons/ai";
-import { RiHotelBedLine } from "react-icons/ri";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { GiPerson } from "react-icons/gi";
+import { IoIosAirplane } from "react-icons/io";
+import { MdLocalTaxi, MdOutlineHotel } from "react-icons/md";
+import { RiHotelBedLine } from "react-icons/ri";
 import "./Header.css";
 
 const Header = () => {
@@ -38,7 +37,7 @@ const Header = () => {
           Get rewarded for your travels - unlock instant savings of 10% or more
           with a free BD Booking account{" "}
         </p>
-        <button className="headerButton">Sign in / Register</button>
+        <button className="headerBtn">Sign in / Register</button>
         <div className="headerSearch">
           <div className="headerSearchItem">
             <MdOutlineHotel className="headerIcon" />
@@ -55,6 +54,9 @@ const Header = () => {
           <div className="headerSearchItem">
             <GiPerson className="headerIcon" />
             <span className="headerSearchText">{`1 adults 0 children 1 room`}</span>
+          </div>
+          <div className="headerSearchItem">
+            <button className="headerBtn">Search</button>
           </div>
         </div>
       </div>

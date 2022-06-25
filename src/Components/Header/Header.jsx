@@ -12,6 +12,7 @@ import { useState } from "react";
 import { format } from "date-fns";
 
 const Header = () => {
+  const [openDate, setOpenDate] = useState(false);
   const [searchDate, setSearchDate] = useState([
     {
       startDate: new Date(),
@@ -62,17 +63,23 @@ const Header = () => {
           </div>
           <div className="headerSearchItem">
             <FaRegCalendarAlt className="headerIcon" />
-            <span className="headerSearchText">{`${format(
-              searchDate[0].startDate,
+            <span
+              className="headerSearchText"
+              onClick={() => {
+                setOpenDate(!openDate);
+              }}
+            >{`${format(searchDate[0].startDate, "dd/MM/yyyy")} to ${format(
+              searchDate[0].endDate,
               "dd/MM/yyyy"
-            )} to ${format(searchDate[0].endDate, "dd/MM/yyyy")}`}</span>
+            )}`}</span>
+            {openDate && 
             <DateRange
               editableDateInputs={true}
               onChange={(item) => setSearchDate([item.selection])}
               moveRangeOnFirstSelection={false}
               ranges={searchDate}
               className="searchDate"
-            />
+            />}
           </div>
           <div className="headerSearchItem">
             <GiPerson className="headerIcon" />

@@ -50,7 +50,7 @@ const Header = () => {
           </div>
           <div className="headerSearchItem">
             <FaRegCalendarAlt className="headerIcon" />
-            <span>data to date</span>
+            <span>{`data to date`}</span>
           </div>
           <div className="headerSearchItem">
             <GiPerson className="headerIcon" />

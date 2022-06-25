@@ -3,15 +3,16 @@
   color: white;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .headerContainer {
+  width: 100%;
+  max-width: 1024px;
   margin: 20px 0 100px 0;
 }
 
 .headerList {
-  width: 100%;
-  max-width: 1024px;
   margin-bottom: 50px;
 }
 
@@ -43,4 +44,19 @@
   font-weight: 500;
   padding: 10px;
   cursor: pointer;
+}
+
+.headerSearch {
+  height: 30px;
+  background-color: white;
+  border: 3px solid #febb02;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+  position: absolute;
+  bottom: -25px;
+  width: 99%;
+  max-width: 1024px;
 }

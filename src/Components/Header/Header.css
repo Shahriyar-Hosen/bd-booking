@@ -110,3 +110,12 @@
   font-size: 12px;
   color: black;
 }
+
+.optionCounterBtn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #0071c2;
+  color: #0071c2;
+  cursor: pointer;
+  background-color: white;
+}

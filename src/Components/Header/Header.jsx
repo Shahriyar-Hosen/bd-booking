@@ -11,7 +11,7 @@ import { DateRange } from "react-date-range";
 import { useState } from "react";
 import { format } from "date-fns";
 
-const Header = ({type}) => {
+const Header = ({ type }) => {
   const [openDate, setOpenDate] = useState(false);
   const [openOption, setOpenOption] = useState(false);
   const [searchDate, setSearchDate] = useState([
@@ -38,7 +38,11 @@ const Header = ({type}) => {
 
   return (
     <div className="header">
-      <div className="headerContainer">
+      <div
+        className={
+          type === "list" ? "headerContainer listMode" : "headerContainer"
+        }
+      >
         <div className="headerList">
           <div className="headerListItem active">
             <MdOutlineHotel />

@@ -26,6 +26,15 @@ const Header = () => {
     room: 1,
   });
 
+  const handleOption = (name, operation) => {
+    setOption((prev) => {
+      return {
+        ...prev,
+        [name]: operation === "i" ? option[name] + 1 : option[name] - 1,
+      };
+    });
+  };
+
   return (
     <div className="header">
       <div className="headerContainer">
@@ -92,36 +101,66 @@ const Header = () => {
             <span className="headerSearchText">{`${option.adult} adults · ${option.children} children · ${option.room} room`}</span>
 
             <div className="options">
-
               <div className="optionItems">
                 <span className="optionText">adult</span>
                 <div className="optionCounter">
-                  <button className="optionCounterBtn">-</button>
-                  <span className="optionCounterNumber">1</span>
-                  <button className="optionCounterBtn">+</button>
+                  <button
+                    className="optionCounterBtn"
+                    disabled={option.adult <= 1}
+                    onClick={() => handleOption("adult", "d")}
+                  >
+                    -
+                  </button>
+                  <span className="optionCounterNumber">{`${option.adult}`}</span>
+                  <button
+                    className="optionCounterBtn"
+                    onClick={() => handleOption("adult", "i")}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
 
               <div className="optionItems">
                 <span className="optionText">children</span>
                 <div className="optionCounter">
-                  <button className="optionCounterBtn">-</button>
-                  <span className="optionCounterNumber">0</span>
-                  <button className="optionCounterBtn">+</button>
+                  <button
+                    className="optionCounterBtn"
+                    disabled={option.children <= 0}
+                    onClick={() => handleOption("children", "d")}
+                  >
+                    -
+                  </button>
+                  <span className="optionCounterNumber">{`${option.children}`}</span>
+                  <button
+                    className="optionCounterBtn"
+                    onClick={() => handleOption("children", "i")}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
 
               <div className="optionItems">
                 <span className="optionText">room</span>
                 <div className="optionCounter">
-                  <button className="optionCounterBtn">-</button>
-                  <span className="optionCounterNumber">1</span>
-                  <button className="optionCounterBtn">+</button>
+                  <button
+                    className="optionCounterBtn"
+                    disabled={option.room <= 1}
+                    onClick={() => handleOption("room", "d")}
+                  >
+                    -
+                  </button>
+                  <span className="optionCounterNumber">{` ${option.room}`}</span>
+                  <button
+                    className="optionCounterBtn"
+                    onClick={() => handleOption("room", "i")}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
-
             </div>
-
           </div>
           <div className="headerSearchItem">
             <button className="headerBtn">Search</button>

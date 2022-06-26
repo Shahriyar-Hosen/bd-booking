@@ -90,7 +90,38 @@ const Header = () => {
           <div className="headerSearchItem">
             <GiPerson className="headerIcon" />
             <span className="headerSearchText">{`${option.adult} adults · ${option.children} children · ${option.room} room`}</span>
-            
+
+            <div className="options">
+
+              <div className="optionItems">
+                <span className="optionText">adult</span>
+                <div className="optionCounter">
+                  <button className="optionCounterBtn">-</button>
+                  <span className="optionCounterNumber">1</span>
+                  <button className="optionCounterBtn">+</button>
+                </div>
+              </div>
+
+              <div className="optionItems">
+                <span className="optionText">children</span>
+                <div className="optionCounter">
+                  <button className="optionCounterBtn">-</button>
+                  <span className="optionCounterNumber">0</span>
+                  <button className="optionCounterBtn">+</button>
+                </div>
+              </div>
+
+              <div className="optionItems">
+                <span className="optionText">room</span>
+                <div className="optionCounter">
+                  <button className="optionCounterBtn">-</button>
+                  <span className="optionCounterNumber">1</span>
+                  <button className="optionCounterBtn">+</button>
+                </div>
+              </div>
+
+            </div>
+
           </div>
           <div className="headerSearchItem">
             <button className="headerBtn">Search</button>

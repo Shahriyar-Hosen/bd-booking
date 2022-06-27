@@ -1,14 +1,19 @@
 import React from "react";
+import Featured from "../../Components/Featured/Featured";
 import Header from "../../Components/Header/Header";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./Home.css";
 
 const Home = () => {
   return (
-    <div>
+    <section>
       <Navbar />
-      <Header/>
-    </div>
+      <Header />
+      <div className="homeContainer">
+        <Featured />
+        <Featured />
+      </div>
+    </section>
   );
 };
 

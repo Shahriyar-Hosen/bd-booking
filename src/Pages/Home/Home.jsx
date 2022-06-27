@@ -11,7 +11,6 @@ const Home = () => {
       <Header />
       <div className="homeContainer">
         <Featured />
-        <Featured />
       </div>
     </section>
   );

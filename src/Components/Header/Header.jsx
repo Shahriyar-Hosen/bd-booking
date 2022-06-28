@@ -10,30 +10,37 @@ import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
 import { useState } from "react";
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ type }) => {
+  const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [openOption, setOpenOption] = useState(false);
-  const [searchDate, setSearchDate] = useState([
+  const [date, setDate] = useState([
     {
       startDate: new Date(),
       endDate: new Date(),
       key: "selection",
     },
   ]);
-  const [option, setOption] = useState({
+  const [options, setOption] = useState({
     adult: 1,
     children: 0,
     room: 1,
   });
+  const navigate = useNavigate();
 
   const handleOption = (name, operation) => {
     setOption((prev) => {
       return {
         ...prev,
-        [name]: operation === "i" ? option[name] + 1 : option[name] - 1,
+        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
       };
     });
+  };
+
+  const handleSearch = () => {
+    navigate("/hotels", { state: { destination, date, options } });
   };
 
   return (
@@ -82,6 +89,7 @@ const Header = ({ type }) => {
                   type="text"
                   placeholder="Where are you going?"
                   className="headerSearchInput"
+                  onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
               <div className="headerSearchItem">
@@ -91,16 +99,16 @@ const Header = ({ type }) => {
                   onClick={() => {
                     setOpenDate(!openDate);
                   }}
-                >{`${format(searchDate[0].startDate, "dd/MM/yyyy")} to ${format(
-                  searchDate[0].endDate,
+                >{`${format(date[0].startDate, "dd/MM/yyyy")} to ${format(
+                  date[0].endDate,
                   "dd/MM/yyyy"
                 )}`}</span>
                 {openDate && (
                   <DateRange
                     editableDateInputs={true}
-                    onChange={(item) => setSearchDate([item.selection])}
+                    onChange={(item) => setDate([item.selection])}
                     moveRangeOnFirstSelection={false}
-                    ranges={searchDate}
+                    ranges={date}
                     className="searchDate"
                   />
                 )}
@@ -110,7 +118,7 @@ const Header = ({ type }) => {
                 <span
                   onClick={() => setOpenOption(!openOption)}
                   className="headerSearchText"
-                >{`${option.adult} adults · ${option.children} children · ${option.room} room`}</span>
+                >{`${options.adult} adults · ${options.children} children · ${options.room} room`}</span>
                 {openOption && (
                   <>
                     <div className="options">
@@ -119,12 +127,12 @@ const Header = ({ type }) => {
                         <div className="optionCounter">
                           <button
                             className="optionCounterBtn"
-                            disabled={option.adult <= 1}
+                            disabled={options.adult <= 1}
                             onClick={() => handleOption("adult", "d")}
                           >
                             -
                           </button>
-                          <span className="optionCounterNumber">{`${option.adult}`}</span>
+                          <span className="optionCounterNumber">{`${options.adult}`}</span>
                           <button
                             className="optionCounterBtn"
                             onClick={() => handleOption("adult", "i")}
@@ -139,12 +147,12 @@ const Header = ({ type }) => {
                         <div className="optionCounter">
                           <button
                             className="optionCounterBtn"
-                            disabled={option.children <= 0}
+                            disabled={options.children <= 0}
                             onClick={() => handleOption("children", "d")}
                           >
                             -
                           </button>
-                          <span className="optionCounterNumber">{`${option.children}`}</span>
+                          <span className="optionCounterNumber">{`${options.children}`}</span>
                           <button
                             className="optionCounterBtn"
                             onClick={() => handleOption("children", "i")}
@@ -159,12 +167,12 @@ const Header = ({ type }) => {
                         <div className="optionCounter">
                           <button
                             className="optionCounterBtn"
-                            disabled={option.room <= 1}
+                            disabled={options.room <= 1}
                             onClick={() => handleOption("room", "d")}
                           >
                             -
                           </button>
-                          <span className="optionCounterNumber">{` ${option.room}`}</span>
+                          <span className="optionCounterNumber">{` ${options.room}`}</span>
                           <button
                             className="optionCounterBtn"
                             onClick={() => handleOption("room", "i")}
@@ -178,7 +186,9 @@ const Header = ({ type }) => {
                 )}
               </div>
               <div className="headerSearchItem">
-                <button className="headerBtn">Search</button>
+                <button className="headerBtn" onClick={handleSearch}>
+                  Search
+                </button>
               </div>
             </div>
           </>

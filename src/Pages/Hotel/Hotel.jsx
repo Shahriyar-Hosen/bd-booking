@@ -3,6 +3,7 @@ import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
 import MailList from "../../Components/MailList/MailList";
 import Navbar from "../../Components/Navbar/Navbar";
+import { MdLocationOn } from "react-icons/md";
 import "./Hotel.css";
 
 const Hotel = () => {
@@ -36,6 +37,7 @@ const Hotel = () => {
           <button className="bookNow">Reserve or Book Now!</button>
           <h1 className="hotelTitle">Tower Street Apartments</h1>
           <div className="hotelAddress">
+            <MdLocationOn />
             <span>Elton St 125 New york</span>
           </div>
           <span className="hotelDistance">

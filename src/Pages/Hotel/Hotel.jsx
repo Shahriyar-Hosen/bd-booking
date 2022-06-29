@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
 import MailList from "../../Components/MailList/MailList";
 import Navbar from "../../Components/Navbar/Navbar";
 import { MdLocationOn } from "react-icons/md";
+import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
+import { GrClose } from "react-icons/gr";
 import "./Hotel.css";
 
 const Hotel = () => {
+  const [slideNumber, setSlideNumber] = useState(0);
+  const [open, setOpen] = useState(false);
+
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
@@ -28,11 +34,47 @@ const Hotel = () => {
     },
   ];
 
+  const handleOpen = (i) => {
+    setSlideNumber(i);
+    setOpen(true);
+  };
+
+  const handleMove = (direction) => {
+    let newSlideNumber;
+
+    if (direction === "l") {
+      newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1;
+    } else {
+      newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
+    }
+
+    setSlideNumber(newSlideNumber);
+  };
+
   return (
-    <div>
+    <section>
       <Navbar />
       <Header type="list" />
       <div className="hotelContainer">
+        {open && (
+          <div className="slider">
+            <GrClose
+              className="close"
+              onClick={() => setOpen(false)}
+            />
+            <FaArrowLeft
+              className="arrow"
+              onClick={() => handleMove("l")}
+            />
+            <div className="sliderWrapper">
+              <img src={photos[slideNumber].src} alt="" className="sliderImg" />
+            </div>
+            <FaArrowRight
+              className="arrow"
+              onClick={() => handleMove("r")}
+            />
+          </div>
+        )}
         <div className="hotelWrapper">
           <button className="bookNow">Reserve or Book Now!</button>
           <h1 className="hotelTitle">Tower Street Apartments</h1>
@@ -50,7 +92,7 @@ const Hotel = () => {
             {photos.map((photo, i) => (
               <div className="hotelImgWrapper" key={i}>
                 <img
-                  // onClick={() => handleOpen(i)}
+                  onClick={() => handleOpen(i)}
                   src={photo.src}
                   alt=""
                   className="hotelImg"
@@ -91,7 +133,7 @@ const Hotel = () => {
         <MailList />
         <Footer />
       </div>
-    </div>
+    </section>
   );
 };
 

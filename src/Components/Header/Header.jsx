@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
-  const [openOption, setOpenOption] = useState(false);
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -23,15 +22,17 @@ const Header = ({ type }) => {
       key: "selection",
     },
   ]);
-  const [options, setOption] = useState({
+  const [openOptions, setOpenOptions] = useState(false);
+  const [options, setOptions] = useState({
     adult: 1,
     children: 0,
     room: 1,
   });
+
   const navigate = useNavigate();
 
   const handleOption = (name, operation) => {
-    setOption((prev) => {
+    setOptions((prev) => {
       return {
         ...prev,
         [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
@@ -116,10 +117,10 @@ const Header = ({ type }) => {
               <div className="headerSearchItem">
                 <GiPerson className="headerIcon" />
                 <span
-                  onClick={() => setOpenOption(!openOption)}
+                  onClick={() => setOpenOptions(!openOptions)}
                   className="headerSearchText"
                 >{`${options.adult} adults · ${options.children} children · ${options.room} room`}</span>
-                {openOption && (
+                {openOptions && (
                   <>
                     <div className="options">
                       <div className="optionItems">

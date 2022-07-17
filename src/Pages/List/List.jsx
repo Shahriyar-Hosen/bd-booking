@@ -20,7 +20,7 @@ const List = () => {
   const { data, loading, error, reFetch } = useFetch(
     `/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`
   );
-  console.log("List: ", error);
+  console.log("List Error: ", error);
   const handleClick = () => {
     reFetch();
   };

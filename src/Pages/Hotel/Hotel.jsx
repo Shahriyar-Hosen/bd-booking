@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
 import MailList from "../../Components/MailList/MailList";
@@ -8,10 +8,20 @@ import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 import "./Hotel.css";
+import { useLocation, useNavigate } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
+import { SearchContext } from "../../context/SearchContext";
 
 const Hotel = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+
+  const { data, loading, error } = useFetch(`/hotels/find/${id}`);
+  const navigate = useNavigate();
+  // const { user } = useContext(AuthContext);
+  const { dates, options } = useContext(SearchContext);
 
   const photos = [
     {
@@ -33,6 +43,18 @@ const Hotel = () => {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707389.jpg?k=52156673f9eb6d5d99d3eed9386491a0465ce6f3b995f005ac71abc192dd5827&o=&hp=1",
     },
   ];
+
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+  function dayDifference(date1, date2) {
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+    return diffDays;
+  }
+  if (!dates) {
+    return <div>Loading...</div>;
+  }
+  const days = dayDifference(dates[0]?.endDate, dates[0]?.startDate);
+  console.log(days);
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -58,21 +80,12 @@ const Hotel = () => {
       <div className="hotelContainer">
         {open && (
           <div className="slider">
-            <GrClose
-              className="close"
-              onClick={() => setOpen(false)}
-            />
-            <FaArrowLeft
-              className="arrow"
-              onClick={() => handleMove("l")}
-            />
+            <GrClose className="close" onClick={() => setOpen(false)} />
+            <FaArrowLeft className="arrow" onClick={() => handleMove("l")} />
             <div className="sliderWrapper">
               <img src={photos[slideNumber].src} alt="" className="sliderImg" />
             </div>
-            <FaArrowRight
-              className="arrow"
-              onClick={() => handleMove("r")}
-            />
+            <FaArrowRight className="arrow" onClick={() => handleMove("r")} />
           </div>
         )}
         <div className="hotelWrapper">
@@ -118,13 +131,14 @@ const Hotel = () => {
               </p>
             </div>
             <div className="hotelDetailsPrice">
-              <h1>Perfect for a 9-night stay!</h1>
+              <h1>Perfect for a {days}-night stay!</h1>
               <span>
                 Located in the real heart of Krakow, this property has an
                 excellent location score of 9.8!
               </span>
               <h2>
-                <b>$945</b> (9 nights)
+                <b>${days * data.cheapestPrice * options.room}</b> ({days}{" "}
+                nights)
               </h2>
               <button>Reserve or Book Now!</button>
             </div>

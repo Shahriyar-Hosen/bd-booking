@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init.js";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
@@ -8,7 +8,7 @@ import "./Login.css";
 
 const Login = () => {
   const [error, setError] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     username: undefined,
@@ -16,35 +16,36 @@ const Login = () => {
     password: undefined,
   });
 
-  const [signInWithEmailAndPassword, user, authLoading, authError] =
+  const [signInWithEmailAndPassword, user, loading, authError] =
     useSignInWithEmailAndPassword(auth);
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  console.log("credentials: ", credentials);
-
+  if (authError) {
+    authError(authError);
+  }
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
       signInWithEmailAndPassword(e.target.email.value, e.target.password.value);
-      console.log(user);
-      const res = await axios.post("/auth/login", credentials);
-      console.log(res);
-      if (res.status === 200) {
-        localStorage.setItem("user", JSON.stringify(res.data.details));
+      console.log("user: ", user);
+      if (user) {
+        const res = await axios.post("/auth/login", credentials);
+        console.log(res);
+        if (res.status === 200) {
+          console.log("LOGIN_SUCCESS");
+          localStorage.setItem("user", JSON.stringify(res.data.details));
+          // navigate("/");
+        }
       }
-      //   dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-      // navigate("/");
     } catch (err) {
+      console.log("err:", err);
       setError(err);
-      //   dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
   };
-
-  console.log("err:", error);
 
   return (
     <div className="login">
@@ -52,6 +53,7 @@ const Login = () => {
         <input
           type="text"
           placeholder="username"
+          name="username"
           id="username"
           onChange={handleChange}
           className="lInput"
@@ -59,6 +61,7 @@ const Login = () => {
         <input
           type="email"
           placeholder="email"
+          name="email"
           id="email"
           onChange={handleChange}
           className="lInput"
@@ -66,16 +69,12 @@ const Login = () => {
         <input
           type="password"
           placeholder="password"
+          name="password"
           id="password"
           onChange={handleChange}
           className="lInput"
         />
-        <button
-          type="submit"
-          disabled={loading}
-          onClick={handleClick}
-          className="lButton"
-        >
+        <button type="submit" disabled={loading} className="lButton">
           Login
         </button>
         {error && <span>{error.message}</span>}

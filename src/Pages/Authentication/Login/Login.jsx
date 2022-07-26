@@ -8,7 +8,6 @@ import "./Login.css";
 
 const Login = () => {
   const [error, setError] = useState([]);
-  const [, setLoading] = useState(false);
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     username: undefined,
@@ -38,7 +37,7 @@ const Login = () => {
         if (res.status === 200) {
           console.log("LOGIN_SUCCESS");
           localStorage.setItem("user", JSON.stringify(res.data.details));
-          // navigate("/");
+          navigate("/");
         }
       }
     } catch (err) {

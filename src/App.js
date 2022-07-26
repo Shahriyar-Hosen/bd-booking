@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./Pages/Authentication/Login/Login";
+import Register from "./Pages/Authentication/Register/Register";
 import Home from "./Pages/Home/Home";
 import Hotel from "./Pages/Hotel/Hotel";
 import List from "./Pages/List/List";
@@ -13,6 +14,7 @@ function App() {
         <Route path="/hotels" element={<List />}></Route>
         <Route path="/hotels/:id" element={<Hotel />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
       </Routes>
     </div>
   );

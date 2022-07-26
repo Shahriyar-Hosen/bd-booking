@@ -85,7 +85,8 @@ const Header = ({ type }) => {
               Get rewarded for your travels - unlock instant savings of 10% or
               more with a free BD Booking account{" "}
             </p>
-            <button className="headerBtn">Sign in / Register</button>
+
+            <button className="headerBtn">Book your favorite hotel</button>
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <MdOutlineHotel className="headerIcon" />

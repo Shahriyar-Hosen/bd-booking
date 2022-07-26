@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init.js";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
@@ -49,6 +49,7 @@ const Login = () => {
   return (
     <div className="login">
       <form onSubmit={handleClick} className="lContainer">
+        <h2 className="title">BD Booking</h2>
         <input
           type="text"
           placeholder="username"
@@ -76,6 +77,12 @@ const Login = () => {
         <button type="submit" disabled={loading} className="lButton">
           Login
         </button>
+        <div className="user">
+          Don't have an account?{" "}
+          <Link to="/register" className="">
+            Sign up
+          </Link>
+        </div>
         {error && <span>{error.message}</span>}
       </form>
     </div>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init.js";
 
 const Register = () => {
@@ -12,7 +12,7 @@ const Register = () => {
     email: undefined,
     password: undefined,
   });
-  
+
   const [createUserWithEmailAndPassword, user, loading, authError] =
     useCreateUserWithEmailAndPassword(auth);
 
@@ -51,6 +51,7 @@ const Register = () => {
   return (
     <div className="login">
       <form onSubmit={handleClick} className="lContainer">
+        <h2 className="title">BD Booking</h2>
         <input
           type="text"
           placeholder="username"
@@ -75,6 +76,12 @@ const Register = () => {
         <button type="submit" disabled={loading} className="lButton">
           Sign Up
         </button>
+        <div className="user">
+          Already have an account?{" "}
+          <Link to="/login" className="">
+            Sign up
+          </Link>
+        </div>
         {error && <span>{error.message}</span>}
       </form>
     </div>

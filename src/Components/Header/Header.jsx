@@ -45,6 +45,8 @@ const Header = ({ type }) => {
 
   const handleSearch = () => {
     dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
+    
+    // List page
     navigate("/hotels", { state: { destination, dates, options } });
   };
   return (

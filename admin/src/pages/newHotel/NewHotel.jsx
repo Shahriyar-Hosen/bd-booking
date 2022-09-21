@@ -25,7 +25,7 @@ const NewHotel = () => {
     );
     setRooms(value);
   };
-  
+
   console.log(files)
 
   const handleClick = async (e) => {
@@ -53,7 +53,9 @@ const NewHotel = () => {
       };
 
       await axios.post("/hotels", newhotel);
-    } catch (err) {console.log(err)}
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="new">

@@ -15,9 +15,11 @@ const New = ({ inputs, title }) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", "upload");
+
     try {
       const uploadRes = await axios.post(
         "https://api.cloudinary.com/v1_1/dev-shahriyar/image/upload",
@@ -37,7 +39,7 @@ const New = ({ inputs, title }) => {
     }
   };
 
-  console.log(info);
+  // console.log(info);
   return (
     <div className="new">
       <Sidebar />

@@ -16,16 +16,17 @@ const Reserve = ({ setOpen, hotelId }) => {
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
-
-    const date = new Date(start.getTime());
-
+    
+    const currentDate = new Date(start.getTime()); // Renamed 'date' to 'currentDate' for clarity
+    
     const dates = [];
-
-    while (date <= end) {
-      dates.push(new Date(date).getTime());
-      date.setDate(date.getDate() + 1);
+    
+    while (currentDate <= end) {
+      dates.push(new Date(currentDate).getTime());
+      currentDate.setDate(currentDate.getDate() + 1);
     }
-
+    
+    
     return dates;
   };
 

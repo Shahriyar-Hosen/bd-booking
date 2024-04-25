@@ -105,13 +105,13 @@ const Header = ({ type }) => {
               </div>
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
-                <span
+                <button
                   onClick={() => setOpenDate(!openDate)}
                   className="headerSearchText"
                 >{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
                   dates[0].endDate,
                   "MM/dd/yyyy"
-                )}`}</span>
+                )}`}</button>
                 {openDate && (
                   <DateRange
                     editableDateInputs={true}
@@ -125,10 +125,10 @@ const Header = ({ type }) => {
               </div>
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faPerson} className="headerIcon" />
-                <span
+                <button
                   onClick={() => setOpenOptions(!openOptions)}
                   className="headerSearchText"
-                >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
+                >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</button>
                 {openOptions && (
                   <div className="options">
                     <div className="optionItem">

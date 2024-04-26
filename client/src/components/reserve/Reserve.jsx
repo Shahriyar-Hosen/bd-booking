@@ -15,9 +15,9 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
-    const end = new Date(endDate);
+    let end = new Date(endDate);
     
-    const currentDate = new Date(start.getTime()); // Renamed 'date' to 'currentDate' for clarity
+    let currentDate = new Date(start.getTime()); // Renamed 'date' to 'currentDate' for clarity
     
     const dates = [];
     

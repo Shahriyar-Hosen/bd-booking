@@ -14,17 +14,17 @@ const Reserve = ({ setOpen, hotelId }) => {
   const { dates } = useContext(SearchContext);
 
   const getDatesInRange = (startDate, endDate) => {
-    const start = new Date(startDate);
-    let end = new Date(endDate);
+    // const start = new Date(startDate);
+    // let end = new Date(endDate);
     
-    let currentDate = new Date(start.getTime()); // Renamed 'date' to 'currentDate' for clarity
+    // let currentDate = new Date(start.getTime()); // Renamed 'date' to 'currentDate' for clarity
     
     const dates = [];
     
-    while (currentDate <= end) {
-      dates.push(new Date(currentDate).getTime());
-      currentDate.setDate(currentDate.getDate() + 1);
-    }
+    // while (currentDate <= end) {
+    //   dates.push(new Date(currentDate).getTime());
+    //   currentDate.setDate(currentDate.getDate() + 1);
+    // }
     
     
     return dates;
